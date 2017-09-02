@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-line-login-plugin" version="0.1">
+  <name>Line Login</name>
+  <js-module src="www/lineLogin.js">
+    <clobbers target="lineLogin" />
+  </js-module>
+
+  <preference name="LINE_CHANNEL_ID" />
+
+  <!-- iOS -->
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="LineLogin">
+        <param name="ios-package" value="LineLogin" />
+      </feature>
+    </config-file>
+    <config-file target="*-Info.plist" parent="LineSDKConfig">
+      <dict>
+        <key>ChannelID</key>
+        <string>$LINE_CHANNEL_ID</string>
+      </dict>
+    </config-file>
+    <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+      <array>
+        <dict>
+          <key>CFBundleTypeRole</key>
+          <string>Editor</string>
+          <key>CFBundleURLSchemes</key>
+          <array>
+            <string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+          </array>
+        </dict>
+      </array>
+    </config-file>
+    <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+      <array>
+        <string>lineauth</string>
+        <string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+      </array>
+    </config-file>
+
+    <source-file src="src/ios/AppDelegate+LineLogin.h" />
+    <source-file src="src/ios/AppDelegate+LineLogin.m" />
+    
+    <source-file src="src/ios/LineLogin.swift" />
+
+    <framework src="src/ios/LineSDK.framework" custom="true" />
+    <framework src="Security.framework" />
+    <framework src="CoreTelephony.framework" />
+
+    <dependency id="cordova-plugin-add-swift-support" version="1.6.2"/>
+  </platform>
+
+</plugin>
