@@ -1,9 +1,10 @@
 # cordova-line-login-plugin
-LineSDKを使用してLINEログインを簡単に実装するためのcordovaプラグイン。
-LineSDK 4.0.2を使用
+LineSDKを使用してLINEログインを簡単に実装するためのcordovaプラグイン。　　
+
+機能はログインのみで、LineSDK 4.0.2を使用。Androidも対応予定。
 
 ## Installation
-    cordova plugin add xxxxx --variable LINE_CHANNEL_ID={your_line_channel_id}
+    cordova plugin add https://github.com/nrikiji/cordova-line-login-plugin.git --variable LINE_CHANNEL_ID={your_line_channel_id}
 
 ## Supported Platforms
 - iOS
