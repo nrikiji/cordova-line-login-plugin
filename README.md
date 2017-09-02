@@ -30,6 +30,7 @@ angular.module('starter', ['ionic'])
   })
   .controller("LoginCtrl", function($scope) {
     $scope.onLineLogin = function() {
+      // login...
       lineLogin.login({},
         function(result) {
           console.log(result); // {userID:12345, displayName:'user name', pictureURL:'thumbnail url'}
