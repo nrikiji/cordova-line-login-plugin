@@ -1,6 +1,6 @@
 //
 //  AppDelegate+LineLogin.m
-//  Line
+//  Line Login
 //
 //  Created by nrikiji inc on 2017/09/01.
 //
