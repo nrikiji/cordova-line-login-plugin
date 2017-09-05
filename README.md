@@ -1,7 +1,11 @@
 # cordova-line-login-plugin
 LineSDKを使用してLINEログインを簡単に実装するためのcordovaプラグイン。　　
 
-機能はログインのみで、LineSDK 4.0.2を使用。Androidも対応予定。
+機能はログインのみで、使用しているLineSDKのバージョンは以下のとおり。  
+
+iOS：4.0.2  
+
+Android：4.0.5  
 
 組み込みまでの流れは以下の通り  
 「LINE BUSINESS CENTER」からLINEログインに対応したビジネスアカウントを作成。Application TypeはNATIVE_APPを選択。
