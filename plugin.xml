@@ -51,4 +51,23 @@
     <dependency id="cordova-plugin-add-swift-support" version="1.6.2"/>
   </platform>
 
+  <!-- Android -->
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="LineLogin">
+        <param name="android-package" value="plugin.line.LineLogin"/>
+      </feature>
+    </config-file>
+    <source-file src="src/android/LineLogin.java" target-dir="src/plugin/line" />
+
+    <lib-file src="src/android/line-sdk-4.0.5.aar" />
+    
+    <config-file target="AndroidManifest.xml" parent="/*">
+      <uses-permission android:name="android.permission.INTERNET" />
+    </config-file>
+
+    <framework src="src/android/line.gradle" custom="true" type="gradleReference" />
+    
+  </platform>
+
 </plugin>
