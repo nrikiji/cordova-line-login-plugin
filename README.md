@@ -8,25 +8,27 @@ LineSDKを使用してLINEログインを簡単に実装するためのcordova�
 
 ### ios
 1. 「LINE DEVELOPERS」より「iOS Bundle ID」と「iOS Scheme」を設定。
-例)  
-
-iOS Bundle ID : com.example.sample  
-
-iOS Scheme : line3rdp.com.example.sample  
-
 1. 当プラグインをインストール。
 1. xcodeの「Capabilities」より「Keychain Sharing」をONに設定。
 1. プログラムの実装
 
+```
+例)
+iOS Bundle ID : com.example.sample
+iOS Scheme : line3rdp.com.example.sample
+```
+
 ### android
 1. 「LINE DEVELOPERS」より「Android Package Name」と「Android Package Signature」、「Android Scheme」を設定。
+1. 当プラグインをインストール。
+1. プログラムの実装
+
+```
 例)  
-
-Android Package Name : com.example.sample  
-
-Android Package Signature : 11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff:gg:hh:ii:jj:kk  
-
-Android Scheme : com.example.sample://  
+Android Package Name : com.example.sample
+Android Package Signature : 11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff:gg:hh:ii:jj:kk
+Android Scheme : com.example.sample://
+```
 
 ## Installation
     cordova plugin add https://github.com/nrikiji/cordova-line-login-plugin.git --variable LINE_CHANNEL_ID={your_line_channel_id}
@@ -44,7 +46,7 @@ angular.module('starter', ['ionic'])
     ・・・
 
     // initialize
-    lineLogin.initialize();
+    lineLogin.initialize({channel_id: "your_chanel_id"});
   })
   .controller("LoginCtrl", function($scope) {
     $scope.onLineLogin = function() {
