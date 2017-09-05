@@ -11,7 +11,7 @@ Android：4.0.5
 「LINE BUSINESS CENTER」からLINEログインに対応したビジネスアカウントを作成。Application TypeはNATIVE_APPを選択。
 
 ### ios
-1. 「LINE DEVELOPERS」より「iOS Bundle ID」と「iOS Scheme」を設定。
+1. 「LINE DEVELOPERS」より「iOS Bundle ID」「iOS Scheme」を設定。
 1. 当プラグインをインストール。
 1. xcodeの「Capabilities」より「Keychain Sharing」をONに設定。
 1. プログラムの実装
@@ -23,7 +23,7 @@ iOS Scheme : line3rdp.com.example.sample
 ```
 
 ### android
-1. 「LINE DEVELOPERS」より「Android Package Name」と「Android Package Signature」、「Android Scheme」を設定。
+1. 「LINE DEVELOPERS」より「Android Package Name」「Android Package Signature」「Android Scheme」を設定。
 1. 当プラグインをインストール。
 1. プログラムの実装
 
