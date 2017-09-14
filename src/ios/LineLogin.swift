@@ -32,7 +32,7 @@ import LineSDK
                 data.updateValue(userID, forKey: "userID")
             }
             if let pictureURL = profile?.pictureURL {
-                data.updateValue(pictureURL, forKey: "pictureURL")
+                data.updateValue(String(describing: pictureURL), forKey: "pictureURL")
             }
             let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs:data)
             commandDelegate.send(result, callbackId:self.callbackId)
