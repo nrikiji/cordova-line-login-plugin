@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>16C67</string>
+	<string>16G29</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -25,17 +25,17 @@
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>8C1002</string>
+	<string>8E3004b</string>
 	<key>DTPlatformVersion</key>
 	<string>GM</string>
 	<key>DTSDKBuild</key>
-	<string>16C67</string>
+	<string>16G29</string>
 	<key>DTSDKName</key>
-	<string>iphoneos10.2</string>
+	<string>iphoneos10.3</string>
 	<key>DTXcode</key>
-	<string>0821</string>
+	<string>0833</string>
 	<key>DTXcodeBuild</key>
-	<string>8C1002</string>
+	<string>8E3004b</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2017 LINE Corporation All rights reserved.</string>
 </dict>

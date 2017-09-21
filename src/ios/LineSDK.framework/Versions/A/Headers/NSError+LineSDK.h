@@ -21,10 +21,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern const NSString *LineSDKServerErrorDomain;
-extern const NSString *LineSDKServerErrorUserInfoKey;
+extern NSString *const LineSDKServerErrorDomain;
+extern NSString *const LineSDKServerErrorUserInfoKey;
 
-extern const NSString *LineSDKInternalErrorDomain;
+extern NSString *const LineSDKInternalErrorDomain;
 typedef NS_ENUM(NSInteger, LineSDKInternalErrorCode) {
     LineSDKInternalErrorCodeUnknown = 0,
     LineSDKInternalErrorCodeLoginError,

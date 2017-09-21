@@ -23,7 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern const NSString *LineSDKVersion;
+extern NSString *const LineSDKVersion;
 
 @interface LineSDKConfiguration : NSObject
 
