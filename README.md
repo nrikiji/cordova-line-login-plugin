@@ -62,6 +62,16 @@ angular.module('starter', ['ionic'])
           console.log(error);
         });
     }
+
+    $scope.onLineLogout = function() {
+      // logout...
+      lineLogin.logout(
+        function(result) {
+          console.log(result);
+        }, function(error) {
+          console.log(error);
+        });
+    }
   });
 ```
 

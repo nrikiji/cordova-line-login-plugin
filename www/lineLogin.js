@@ -10,6 +10,10 @@ var LineLogin = {
   
   login: function(param, onSuccess, onFail) {
     return exec(onSuccess, onFail, 'LineLogin', 'login', [param]);
+  },
+
+  logout: function(onSuccess, onFail) {
+    return exec(onSuccess, onFail, 'LineLogin', 'logout', []);
   }
 
 };
