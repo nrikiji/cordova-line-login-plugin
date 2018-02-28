@@ -3,7 +3,7 @@ LineSDKを使用してLINEログインを簡単に実装するためのcordova�
 
 機能はログインのみで、使用しているLineSDKのバージョンは以下のとおり。  
 
-iOS：4.0.3  
+iOS：4.1.0
 
 Android：4.0.5  
 
