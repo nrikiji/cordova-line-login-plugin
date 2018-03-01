@@ -6,6 +6,8 @@ import android.util.Log;
 
 import com.linecorp.linesdk.LineApiResponseCode;
 import com.linecorp.linesdk.LineProfile;
+import com.linecorp.linesdk.api.LineApiClient;
+import com.linecorp.linesdk.api.LineApiClientBuilder;
 import com.linecorp.linesdk.auth.LineLoginApi;
 import com.linecorp.linesdk.auth.LineLoginResult;
 
@@ -18,6 +20,7 @@ public class LineLogin extends CordovaPlugin {
 
     String channelId;
     CallbackContext callbackContext;
+    private static LineApiClient lineApiClient;
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
@@ -25,12 +28,24 @@ public class LineLogin extends CordovaPlugin {
         if (action.equals("initialize")) {
             JSONObject params = data.getJSONObject(0);
             channelId = params.get("channel_id").toString();
+
+            LineApiClientBuilder apiClientBuilder = new LineApiClientBuilder(this.cordova.getActivity().getApplicationContext(), channelId);
+            lineApiClient = apiClientBuilder.build();
+
             return true;
         } else if (action.equals("login")) {
             Context context = this.cordova.getActivity().getApplicationContext();
             Intent loginIntent = LineLoginApi.getLoginIntent(context, channelId);
             this.cordova.startActivityForResult((CordovaPlugin) this, loginIntent, 0);
             this.callbackContext = callbackContext;
+            return true;
+        } else if (action.equals("logout")) {
+            try {
+                lineApiClient.logout();
+                callbackContext.success();
+            } catch (Exception e) {
+                callbackContext.error(-1);
+            }
             return true;
         } else {
             return false;
