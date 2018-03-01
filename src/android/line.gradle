@@ -12,5 +12,5 @@ allprojects {
 dependencies {
   compile "com.android.support:appcompat-v7:25.4.0"
   compile "com.android.support:customtabs:25.4.0"
-  compile(name:'line-sdk-4.0.5', ext:'aar')
+  compile(name:'line-sdk-4.0.7', ext:'aar')
 }
