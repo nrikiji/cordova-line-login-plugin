@@ -52,7 +52,7 @@ angular.module('starter', ['ionic'])
     // initialize
     lineLogin.initialize({channel_id: "your_chanel_id"});
   })
-  .controller("LoginCtrl", function($scope) {
+  .controller("LineCtrl", function($scope) {
     $scope.onLineLogin = function() {
       // login...
       lineLogin.login({},
