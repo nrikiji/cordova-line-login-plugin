@@ -5,7 +5,7 @@ LineSDKを使用してLINEログインを簡単に実装するためのcordova�
 
 iOS：4.1.0
 
-Android：4.0.5  
+Android：4.0.7  
 
 組み込みまでの流れは以下の通り  
 「LINE BUSINESS CENTER」からLINEログインに対応したビジネスアカウントを作成。Application TypeはNATIVE_APPを選択。
