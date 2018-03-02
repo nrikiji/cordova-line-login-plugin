@@ -3,9 +3,9 @@ LineSDKを使用してLINEログインを簡単に実装するためのcordova�
 
 機能はログインのみで、使用しているLineSDKのバージョンは以下のとおり。  
 
-iOS：4.0.3  
+iOS：4.1.0
 
-Android：4.0.5  
+Android：4.0.7  
 
 組み込みまでの流れは以下の通り  
 「LINE BUSINESS CENTER」からLINEログインに対応したビジネスアカウントを作成。Application TypeはNATIVE_APPを選択。
@@ -52,12 +52,22 @@ angular.module('starter', ['ionic'])
     // initialize
     lineLogin.initialize({channel_id: "your_chanel_id"});
   })
-  .controller("LoginCtrl", function($scope) {
+  .controller("LineCtrl", function($scope) {
     $scope.onLineLogin = function() {
       // login...
       lineLogin.login({},
         function(result) {
           console.log(result); // {userID:12345, displayName:'user name', pictureURL:'thumbnail url'}
+        }, function(error) {
+          console.log(error);
+        });
+    }
+
+    $scope.onLineLogout = function() {
+      // logout...
+      lineLogin.logout(
+        function(result) {
+          console.log(result);
         }, function(error) {
           console.log(error);
         });

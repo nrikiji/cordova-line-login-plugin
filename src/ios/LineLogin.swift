@@ -4,10 +4,12 @@ import LineSDK
 @objc(LineLogin) class Line : CDVPlugin, LineSDKLoginDelegate {
     
     var callbackId:String?
+    var apiClient:LineSDKAPI?
 
     func initialize(_ command: CDVInvokedUrlCommand) {
         
         LineSDKLogin.sharedInstance().delegate = self
+        apiClient = LineSDKAPI(configuration: LineSDKConfiguration.defaultConfig())
         
         let result = CDVPluginResult(status: CDVCommandStatus_OK)
         commandDelegate.send(result, callbackId:command.callbackId)
@@ -18,6 +20,19 @@ import LineSDK
         LineSDKLogin.sharedInstance().start()
     }
     
+    func logout(_ command: CDVInvokedUrlCommand) {
+        let dispatchQueue = DispatchQueue(label: "logout")
+        apiClient?.logout(queue: dispatchQueue, completion: { (success, error) in
+            if success {
+                let result = CDVPluginResult(status: CDVCommandStatus_OK)
+                self.commandDelegate.send(result, callbackId:command.callbackId)
+            } else {
+                let result = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: error.debugDescription)
+                self.commandDelegate.send(result, callbackId:command.callbackId)
+            }
+        })
+    }
+
     func didLogin(_ login: LineSDKLogin, credential: LineSDKCredential?, profile: LineSDKProfile?, error: Error?) {
         
         if error != nil {

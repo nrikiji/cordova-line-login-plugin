@@ -51,11 +51,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)installLineApp;
 
 - (void)startLogin;
-- (void)startWebLoginWithSafariViewController:(BOOL)useSafariViewControllerIfAvailable;
+- (void)startWebLogin;
 
 - (void)startLoginWithPermissions:(NSArray<NSString *> *)permissions;
-- (void)startWebLoginWithSafariViewController:(BOOL)useSafariViewControllerIfAvailable
-                                  permissions:(NSArray<NSString *> *)permissions;
+- (void)startWebLoginWithPermissions:(NSArray<NSString *> *)permissions;
 
 @end
 NS_ASSUME_NONNULL_END
