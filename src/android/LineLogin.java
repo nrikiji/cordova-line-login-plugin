@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.linecorp.linesdk.LineApiResponse;
 import com.linecorp.linesdk.LineApiResponseCode;
 import com.linecorp.linesdk.LineProfile;
 import com.linecorp.linesdk.api.LineApiClient;
@@ -43,6 +44,27 @@ public class LineLogin extends CordovaPlugin {
             try {
                 lineApiClient.logout();
                 callbackContext.success();
+            } catch (Exception e) {
+                callbackContext.error(-1);
+            }
+            return true;
+        } else if (action.equals("getAccessToken")) {
+            String accessToken = lineApiClient.getCurrentAccessToken().getResponseData().getAccessToken();
+            callbackContext.success(accessToken);
+            return true;
+        } else if (action.equals("verifyAccessToken")) {
+            LineApiResponse verifyResponse = lineApiClient.verifyToken();
+            if (verifyResponse.isSuccess()) {
+                callbackContext.success();
+            } else {
+                callbackContext.error(-1);
+            }
+            return true;
+        } else if (action.equals("refreshAccessToken")) {
+            try {
+                lineApiClient.refreshAccessToken();
+                String accessToken = lineApiClient.getCurrentAccessToken().getResponseData().getAccessToken();
+                callbackContext.success(accessToken);
             } catch (Exception e) {
                 callbackContext.error(-1);
             }

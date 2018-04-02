@@ -72,6 +72,37 @@ angular.module('starter', ['ionic'])
           console.log(error);
         });
     }
+
+    $scope.onLineGetAccessToken = function() {
+      // get access token
+      lineLogin.getAccessToken(
+        function(accessToken) {
+          // success
+        }, function() {
+          // failed
+        });
+    }
+
+    $scope.onLineVerifyAccessToken = function() {
+      // verify current access token
+      lineLogin.verifyAccessToken(
+        function(accessToken) {
+          // success
+        }, function() {
+          // failed
+        });
+    }
+
+    $scope.onLineRefreshAccessToken = function() {
+      // refresh access token
+      lineLogin.verifyAccessToken(
+        function(accessToken) {
+          // success
+        }, function() {
+          // failed
+        });
+    }
+
   });
 ```
 
