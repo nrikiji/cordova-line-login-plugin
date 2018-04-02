@@ -86,7 +86,7 @@ angular.module('starter', ['ionic'])
     $scope.onLineVerifyAccessToken = function() {
       // verify current access token
       lineLogin.verifyAccessToken(
-        function(accessToken) {
+        function() {
           // success
         }, function() {
           // failed
