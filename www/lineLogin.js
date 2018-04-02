@@ -1,4 +1,3 @@
-cordova.define("cordova-line-login-plugin.lineLogin", function(require, exports, module) {
 'use strict';
 
 var exec = require('cordova/exec');
@@ -31,5 +30,3 @@ var LineLogin = {
 
 };
 module.exports = LineLogin;
-
-});
