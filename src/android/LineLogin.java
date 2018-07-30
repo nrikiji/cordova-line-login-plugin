@@ -49,8 +49,15 @@ public class LineLogin extends CordovaPlugin {
             }
             return true;
         } else if (action.equals("getAccessToken")) {
-            String accessToken = lineApiClient.getCurrentAccessToken().getResponseData().getAccessToken();
-            callbackContext.success(accessToken);
+            JSONObject json = new JSONObject();
+            LineAccessToken lineAccessToken = lineApiClient.getCurrentAccessToken().getResponseData();
+            try {
+                json.put("accessToken", lineAccessToken.getAccessToken());
+                json.put("expireTime", lineAccessToken.getEstimatedExpirationTimeMillis());
+                callbackContext.success(json);
+            } catch (JSONException e) {
+                callbackContext.error(-1);
+            }
             return true;
         } else if (action.equals("verifyAccessToken")) {
             LineApiResponse verifyResponse = lineApiClient.verifyToken();

@@ -76,8 +76,9 @@ angular.module('starter', ['ionic'])
     $scope.onLineGetAccessToken = function() {
       // get access token
       lineLogin.getAccessToken(
-        function(accessToken) {
+        function(result) {
           // success
+          console.log(result); // {accessToken:'xxxxxxxx', expireTime: 123456789}
         }, function() {
           // failed
         });
