@@ -32,12 +32,13 @@ import LineSDK
             }
         })
     }
-    
+
     func getAccessToken(_ command: CDVInvokedUrlCommand) {
-        let accessToken = apiClient?.currentAccessToken()?.accessToken
-        if accessToken != nil {
-            let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs:accessToken)
-            commandDelegate.send(result, callbackId: command.callbackId)
+        let currentAccessToken = apiClient?.currentAccessToken()
+        if currentAccessToken != nil {
+            let data = ["accessToken":currentAccessToken?.accessToken, "expireTime":currentAccessToken?.estimatedExpiredDate().timeIntervalSince1970] as [String : Any?]
+            let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs:data)
+            commandDelegate.send(result, callbackId:command.callbackId)
         } else {
             let result = CDVPluginResult(status: CDVCommandStatus_ERROR)
             commandDelegate.send(result, callbackId:command.callbackId)
