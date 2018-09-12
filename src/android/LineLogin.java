@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.linecorp.linesdk.LineAccessToken;
 import com.linecorp.linesdk.LineApiResponse;
 import com.linecorp.linesdk.LineApiResponseCode;
 import com.linecorp.linesdk.LineProfile;
