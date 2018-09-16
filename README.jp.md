@@ -1,31 +1,31 @@
 # cordova-line-login-plugin
-A cordova plugin for easy implementation of LINE login using LineSDK.　　
+LineSDKを使用してLINEログインを簡単に実装するためのcordovaプラグイン。　　
 
-The function logs in, logs out, acquires, verifies, and refreshes the access token. The version of LineSDK you are using is as follows.  
+機能はログイン、ログアウト、アクセストークンの取得・検証・リフレッシュを行う。使用しているLineSDKのバージョンは以下のとおり。  
 
 iOS：4.1.1
 
 Android：4.0.8  
 
-The flow until incorporation is as follows  
-Create a business account corresponding to LINE login from "LINE BUSINESS CENTER". Select NATIVE_APP for Application Type.
+組み込みまでの流れは以下の通り  
+「LINE BUSINESS CENTER」からLINEログインに対応したビジネスアカウントを作成。Application TypeはNATIVE_APPを選択。
 
 ### ios
-1. "IOS Bundle ID" "iOS Scheme" is set from "LINE DEVELOPERS".
-1. Install this plugin
-p1. Set "Keychain Sharing" to ON from "Capabilities" of xcode
-1. Implementing the program
+1. 「LINE DEVELOPERS」より「iOS Bundle ID」「iOS Scheme」を設定。
+1. 当プラグインをインストール。
+1. xcodeの「Capabilities」より「Keychain Sharing」をONに設定。
+1. プログラムの実装
 
 ```
-example)
+例)
 iOS Bundle ID : com.example.sample
 iOS Scheme : line3rdp.com.example.sample
 ```
 
 ### android
-1. "Android Package Name" "Android Package Signature" "Android Scheme" is set from "LINE DEVELOPERS"
-1. Install this plugin
-1. Implementing the program
+1. 「LINE DEVELOPERS」より「Android Package Name」「Android Package Signature」「Android Scheme」を設定。
+1. 当プラグインをインストール。
+1. プログラムの実装
 
 ```
 例)  
@@ -43,7 +43,7 @@ Android Scheme : com.example.sample://
 
 ## Example
 
-Usage examples with ionic
+ionicでの使用例
 ```js
 angular.module('starter', ['ionic'])
   .run(function($ionicPlatform) {
