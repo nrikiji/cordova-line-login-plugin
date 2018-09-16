@@ -28,7 +28,7 @@ iOS Scheme : line3rdp.com.example.sample
 1. Implementing the program
 
 ```
-例)  
+example)  
 Android Package Name : com.example.sample
 Android Package Signature : 11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff:gg:hh:ii:jj:kk
 Android Scheme : com.example.sample://
