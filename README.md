@@ -13,7 +13,7 @@ Create a business account corresponding to LINE login from "LINE BUSINESS CENTER
 ### ios
 1. "IOS Bundle ID" "iOS Scheme" is set from "LINE DEVELOPERS".
 1. Install this plugin
-p1. Set "Keychain Sharing" to ON from "Capabilities" of xcode
+1. Set "Keychain Sharing" to ON from "Capabilities" of xcode
 1. Implementing the program
 
 ```
