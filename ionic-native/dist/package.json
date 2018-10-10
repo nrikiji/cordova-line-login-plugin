@@ -1,1 +1,0 @@
-{"name":"@ionic-native/line-login","version":"4.15.0","description":"Ionic Native - Native plugins for ionic apps","module":"index.js","typings":"index.d.ts","author":"ionic","license":"MIT","peerDependencies":{"@ionic-native/core":"^4.11.0","@angular/core":"*","rxjs":"^5.5.11"},"repository":{"type":"git","url":"https://github.com/ionic-team/ionic-native.git"}}
