@@ -7,7 +7,8 @@ var LineLogin = {
   initialize: function(param, onSuccess, onFail) {
     return exec(onSuccess, onFail, 'LineLogin', 'initialize', [param]);
   },
-  
+
+  // @TODO delete param because unnecessary
   login: function(param, onSuccess, onFail) {
     return exec(onSuccess, onFail, 'LineLogin', 'login', [param]);
   },
