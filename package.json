@@ -1,24 +1,5 @@
 {
   "name": "cordova-line-login-plugin",
   "version": "0.3.4",
-  "description": "A cordova plugin for easy implementation of LINE login using LineSDK.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nrikiji/cordova-line-login-plugin.git"
-  },
-  "keywords": [
-    "cordova",
-    "plugin",
-    "line-login"
-  ],
-  "author": "Naoyuki Rikiji <nrikiji@gmail.com> (https://github.com/nrikiji)",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/nrikiji/cordova-line-login-plugin/issues"
-  },
-  "homepage": "https://github.com/nrikiji/cordova-line-login-plugin#readme"
+  "description": ""
 }
