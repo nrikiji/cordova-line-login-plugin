@@ -41,6 +41,9 @@ Android Scheme : com.example.sample://
 - iOS
 - Android
 
+## LINE SDK
+This plugin use the SDKs provided by LINE. More information about these in their documentation for [iOS](https://developers.line.me/ja/docs/ios-sdk/) or [Android](https://developers.line.me/ja/docs/android-sdk/)
+
 ## Example
 
 Usage examples with ionic
