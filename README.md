@@ -41,6 +41,10 @@ Android Scheme : com.example.sample://
 - iOS
 - Android
 
+## LINE SDK
+このプラグインはLINEが提供するSDKを使用しています。これらの詳細はドキュメントを確認下さい。[iOS](https://developers.line.me/ja/docs/ios-sdk/) or 
+[Android](https://developers.line.me/ja/docs/android-sdk/)
+
 ## Example
 
 ionicでの使用例
