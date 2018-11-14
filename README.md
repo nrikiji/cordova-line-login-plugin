@@ -67,6 +67,16 @@ angular.module('starter', ['ionic'])
         });
     }
 
+    $scope.onLineLoginWeb = function() {
+      // login with web...(iOS only)
+      lineLogin.loginWeb({},
+        function(result) {
+          console.log(result); // {userID:12345, displayName:'user name', pictureURL:'thumbnail url'}
+        }, function(error) {
+          console.log(error);
+        });
+    }
+
     $scope.onLineLogout = function() {
       // logout...
       lineLogin.logout(
