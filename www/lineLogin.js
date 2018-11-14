@@ -13,6 +13,10 @@ var LineLogin = {
     return exec(onSuccess, onFail, 'LineLogin', 'login', [param]);
   },
 
+  loginWeb: function(param, onSuccess, onFail) {
+    return exec(onSuccess, onFail, 'LineLogin', 'loginWeb', [param]);
+  },
+
   logout: function(onSuccess, onFail) {
     return exec(onSuccess, onFail, 'LineLogin', 'logout', []);
   },

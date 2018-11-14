@@ -19,6 +19,11 @@ import LineSDK
         self.callbackId = command.callbackId
         LineSDKLogin.sharedInstance().start()
     }
+
+    func loginWeb(_ command: CDVInvokedUrlCommand) {
+        self.callbackId = command.callbackId
+        LineSDKLogin.sharedInstance().startWebLogin()
+    }
     
     func logout(_ command: CDVInvokedUrlCommand) {
         let dispatchQueue = DispatchQueue(label: "logout")
