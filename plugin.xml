@@ -30,6 +30,8 @@
       </array>
     </config-file>
 
+    <source-file src="src/ios/AppDelegate+LineLogin.h" />
+    <source-file src="src/ios/AppDelegate+LineLogin.m" />
     <source-file src="src/ios/LineLogin.swift" />
     <header-file src="src/ios/LineSDK-Bridging-Header.h" />
     <dependency id="cordova-plugin-add-swift-support" version="1.7.2"/>
