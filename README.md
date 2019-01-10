@@ -35,7 +35,37 @@ Android Scheme : com.example.sample://
 ```
 
 ## Installation
-    cordova plugin add https://github.com/nrikiji/cordova-line-login-plugin.git --variable LINE_CHANNEL_ID={your_line_channel_id}
+- iOS
+
+```
+cordova plugin add https://github.com/nrikiji/cordova-line-login-plugin.git
+
+cd platform/ios
+echo github \"line/line-sdk-ios-swift\" \~\> 5.0 >> Cartfile
+carthage update --platform iOS
+```
+
+「Linked Frameworks and Libraries」より 「Carthage/Build/iOS/LineSDK.framework」を追加  
+
+「Build Phases」より 「Run Script」を登録
+
+Command
+```
+/usr/local/bin/carthage copy-frameworks
+
+```
+
+Input Files
+```
+$(SRCROOT)/Carthage/Build/iOS/LineSDK.framework
+```
+
+Output Files
+```
+$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LineSDK.framework
+```
+
+- Android
 
 ## Supported Platforms
 - iOS

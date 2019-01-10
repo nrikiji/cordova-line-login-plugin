@@ -5,20 +5,12 @@
     <clobbers target="lineLogin" />
   </js-module>
 
-  <preference name="LINE_CHANNEL_ID" />
-
   <!-- iOS -->
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
       <feature name="LineLogin">
         <param name="ios-package" value="LineLogin" />
       </feature>
-    </config-file>
-    <config-file target="*-Info.plist" parent="LineSDKConfig">
-      <dict>
-        <key>ChannelID</key>
-        <string>$LINE_CHANNEL_ID</string>
-      </dict>
     </config-file>
     <config-file target="*-Info.plist" parent="CFBundleURLTypes">
       <array>
@@ -34,20 +26,12 @@
     </config-file>
     <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
       <array>
-        <string>lineauth</string>
-        <string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+        <string>lineauth2</string>
       </array>
     </config-file>
 
-    <source-file src="src/ios/AppDelegate+LineLogin.h" />
-    <source-file src="src/ios/AppDelegate+LineLogin.m" />
-    
     <source-file src="src/ios/LineLogin.swift" />
-
-    <framework src="src/ios/LineSDK.framework" custom="true" />
-    <framework src="Security.framework" />
-    <framework src="CoreTelephony.framework" />
-
+    <header-file src="src/ios/LineSDK-Bridging-Header.h" />
     <dependency id="cordova-plugin-add-swift-support" version="1.7.2"/>
   </platform>
 
