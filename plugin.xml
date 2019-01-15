@@ -44,9 +44,9 @@
     
     <source-file src="src/ios/LineLogin.swift" />
 
-    <framework src="src/ios/LineSDK.framework" custom="true" />
     <framework src="Security.framework" />
     <framework src="CoreTelephony.framework" />
+    <framework src="src/ios/LineSDK.framework" custom="true" />
 
     <dependency id="cordova-plugin-add-swift-support" version="1.7.2"/>
   </platform>
