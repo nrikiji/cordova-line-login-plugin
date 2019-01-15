@@ -1,0 +1,11 @@
+framework module LineSDK {
+  umbrella header "LineSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module LineSDK.Swift {
+    header "LineSDK-Swift.h"
+    requires objc
+}

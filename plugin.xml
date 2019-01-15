@@ -30,11 +30,15 @@
       </array>
     </config-file>
 
+    <dependency id="cordova-plugin-add-swift-support" version="1.7.2"/>
+    <dependency id="cordova-plugin-carthage-support" url="https://github.com/nrikiji/cordova-plugin-carthage-support"/>
     <source-file src="src/ios/AppDelegate+LineLogin.h" />
     <source-file src="src/ios/AppDelegate+LineLogin.m" />
     <source-file src="src/ios/LineLogin.swift" />
     <header-file src="src/ios/LineSDK-Bridging-Header.h" />
-    <dependency id="cordova-plugin-add-swift-support" version="1.7.2"/>
+    <framework src="src/ios/LineSDK.framework" custom="true" carthage="true" />
+    <framework src="src/ios/LineSDKObjC.framework" custom="true" carthage="true" />
+
   </platform>
 
   <!-- Android -->
