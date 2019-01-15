@@ -38,17 +38,9 @@ Android Scheme : com.example.sample://
 https://github.com/nrikiji/cordova-plugin-carthage-support  
 
 ## Installation
-- iOS
-
 ```
 cordova plugin add https://github.com/nrikiji/cordova-line-login-plugin.git
-
-cd platform/ios
-echo github \"line/line-sdk-ios-swift\" \~\> 5.0 >> Cartfile
-carthage update --platform iOS
 ```
-
-- Android
 
 ## Supported Platforms
 - iOS
