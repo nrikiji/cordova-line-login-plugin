@@ -71,28 +71,32 @@ import LineSDK
     
     func verifyAccessToken(_ command: CDVInvokedUrlCommand) {
         
-//        let dispatchQueue = DispatchQueue(label: "verifyToken")
-//        apiClient?.verifyToken(queue: dispatchQueue, completion: { (success, error) in
-//            if (error != nil) {
-//                let result = CDVPluginResult(status: CDVCommandStatus_ERROR)
-//                self.commandDelegate.send(result, callbackId:command.callbackId)
-//            } else {
-//                let result = CDVPluginResult(status: CDVCommandStatus_OK)
-//                self.commandDelegate.send(result, callbackId:command.callbackId)
-//            }
-//        })
+        API.verifyAccessToken { (result) in
+            switch result {
+            case .success( _):
+                let result = CDVPluginResult(status: CDVCommandStatus_OK)
+                self.commandDelegate.send(result, callbackId:command.callbackId)
+            case .failure( _):
+                let result = CDVPluginResult(status: CDVCommandStatus_ERROR)
+                self.commandDelegate.send(result, callbackId:command.callbackId)
+            }
+        }
     }
     
     func refreshAccessToken(_ command: CDVInvokedUrlCommand) {
-//        apiClient?.refreshToken(with: apiClient?.currentAccessToken(), completion: { (success, error) in
-//            if (error != nil) {
-//                let result = CDVPluginResult(status: CDVCommandStatus_ERROR)
-//                self.commandDelegate.send(result, callbackId:command.callbackId)
-//            } else {
-//                let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs:success?.accessToken)
-//                self.commandDelegate.send(result, callbackId: command.callbackId)
-//            }
-//        })
+
+        API.refreshAccessToken { (result) in
+            switch result {
+            case .success(let accessToken):
+                let data = ["accessToken":accessToken.value, "expireTime":accessToken.expiresAt.timeIntervalSince1970] as [String : Any?]
+                dump(data)
+                let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs:data as [AnyHashable : Any])
+                self.commandDelegate.send(result, callbackId:command.callbackId)
+            case .failure( _):
+                let result = CDVPluginResult(status: CDVCommandStatus_ERROR)
+                self.commandDelegate.send(result, callbackId:command.callbackId)
+            }
+        }
     }
     
 }
