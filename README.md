@@ -34,6 +34,9 @@ Android Package Signature : 11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff:gg:hh:i
 Android Scheme : com.example.sample://
 ```
 
+## Requirement
+https://github.com/nrikiji/cordova-plugin-carthage-support  
+
 ## Installation
 - iOS
 
@@ -43,26 +46,6 @@ cordova plugin add https://github.com/nrikiji/cordova-line-login-plugin.git
 cd platform/ios
 echo github \"line/line-sdk-ios-swift\" \~\> 5.0 >> Cartfile
 carthage update --platform iOS
-```
-
-「Linked Frameworks and Libraries」より 「Carthage/Build/iOS/LineSDK.framework」を追加  
-
-「Build Phases」より 「Run Script」を登録
-
-Command
-```
-/usr/local/bin/carthage copy-frameworks
-
-```
-
-Input Files
-```
-$(SRCROOT)/Carthage/Build/iOS/LineSDK.framework
-```
-
-Output Files
-```
-$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LineSDK.framework
 ```
 
 - Android
