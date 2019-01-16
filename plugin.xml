@@ -36,8 +36,11 @@
     <source-file src="src/ios/AppDelegate+LineLogin.m" />
     <source-file src="src/ios/LineLogin.swift" />
     <header-file src="src/ios/LineSDK-Bridging-Header.h" />
-    <framework src="src/ios/LineSDK.framework" custom="true" carthage="true" />
-    <framework src="src/ios/LineSDKObjC.framework" custom="true" carthage="true" />
+    <carthage>
+      <cartfile>github "line/line-sdk-ios-swift" ~> 5.0</cartfile>
+      <framework src="LineSDK.framework"/>
+      <framework src="LineSDKObjC.framework"/>
+    </carthage>
 
   </platform>
 
