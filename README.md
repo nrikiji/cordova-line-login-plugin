@@ -36,6 +36,7 @@ Android Scheme : com.example.sample://
 
 ## Requirement
 https://github.com/nrikiji/cordova-plugin-carthage-support  
+https://github.com/akofman/cordova-plugin-add-swift-support  
 
 ## Installation
 ```
