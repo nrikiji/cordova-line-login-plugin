@@ -5,7 +5,7 @@ LineSDKを使用してLINEログインを簡単に実装するためのcordova�
 
 iOS：4.1.1
 
-Android：4.0.8  
+Android：5.0.1  
 
 組み込みまでの流れは以下の通り  
 「LINE BUSINESS CENTER」からLINEログインに対応したビジネスアカウントを作成。Application TypeはNATIVE_APPを選択。
@@ -33,6 +33,9 @@ Android Package Name : com.example.sample
 Android Package Signature : 11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff:gg:hh:ii:jj:kk
 Android Scheme : com.example.sample://
 ```
+
+#### trouble shooting
+
 
 ## Installation
     cordova plugin add https://github.com/nrikiji/cordova-line-login-plugin.git --variable LINE_CHANNEL_ID={your_line_channel_id}

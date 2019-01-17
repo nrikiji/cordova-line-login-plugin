@@ -5,8 +5,6 @@
     <clobbers target="lineLogin" />
   </js-module>
 
-  <preference name="LINE_CHANNEL_ID" />
-
   <!-- iOS -->
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
@@ -60,13 +58,14 @@
     </config-file>
     <source-file src="src/android/LineLogin.java" target-dir="src/plugin/line" />
 
-    <lib-file src="src/android/line-sdk-4.0.8.aar" />
+    <lib-file src="src/android/line-sdk-5.0.1.aar" />
     
     <config-file target="AndroidManifest.xml" parent="/*">
       <uses-permission android:name="android.permission.INTERNET" />
     </config-file>
 
     <framework src="src/android/line.gradle" custom="true" type="gradleReference" />
+    <hook type="after_prepare" src="src/scripts/after_prepare.js"/>
     
   </platform>
 
