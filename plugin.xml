@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-line-login-plugin" version="0.4.2">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-line-login-plugin" version="0.5.0">
   <name>Line Login</name>
   <js-module src="www/lineLogin.js">
     <clobbers target="lineLogin" />
   </js-module>
-
-  <preference name="LINE_CHANNEL_ID" />
 
   <!-- iOS -->
   <platform name="ios">
@@ -13,12 +11,6 @@
       <feature name="LineLogin">
         <param name="ios-package" value="LineLogin" />
       </feature>
-    </config-file>
-    <config-file target="*-Info.plist" parent="LineSDKConfig">
-      <dict>
-        <key>ChannelID</key>
-        <string>$LINE_CHANNEL_ID</string>
-      </dict>
     </config-file>
     <config-file target="*-Info.plist" parent="CFBundleURLTypes">
       <array>
@@ -34,21 +26,22 @@
     </config-file>
     <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
       <array>
-        <string>lineauth</string>
-        <string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+        <string>lineauth2</string>
       </array>
     </config-file>
 
+    <dependency id="cordova-plugin-add-swift-support" version="1.7.2"/>
+    <dependency id="cordova-plugin-carthage-support" url="https://github.com/nrikiji/cordova-plugin-carthage-support"/>
     <source-file src="src/ios/AppDelegate+LineLogin.h" />
     <source-file src="src/ios/AppDelegate+LineLogin.m" />
-    
     <source-file src="src/ios/LineLogin.swift" />
+    <header-file src="src/ios/LineSDK-Bridging-Header.h" />
+    <carthage>
+      <cartfile>github "line/line-sdk-ios-swift" ~> 5.0</cartfile>
+      <framework src="LineSDK.framework"/>
+      <framework src="LineSDKObjC.framework"/>
+    </carthage>
 
-    <framework src="src/ios/LineSDK.framework" custom="true" />
-    <framework src="Security.framework" />
-    <framework src="CoreTelephony.framework" />
-
-    <dependency id="cordova-plugin-add-swift-support" version="1.7.2"/>
   </platform>
 
   <!-- Android -->
