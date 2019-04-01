@@ -37,7 +37,7 @@
     <source-file src="src/ios/LineLogin.swift" />
     <header-file src="src/ios/LineSDK-Bridging-Header.h" />
     <carthage>
-      <cartfile>github "line/line-sdk-ios-swift" ~> 5.0</cartfile>
+      <cartfile>github "line/line-sdk-ios-swift" == 5.0</cartfile>
       <framework src="LineSDK.framework"/>
       <framework src="LineSDKObjC.framework"/>
     </carthage>
