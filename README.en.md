@@ -43,6 +43,11 @@ Android Package Signature : 11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff:gg:hh:i
 Android Scheme : com.example.sample://
 ```
 
+## Requirement
+https://github.com/nrikiji/cordova-plugin-carthage-support  
+https://github.com/akofman/cordova-plugin-add-swift-support  
+[Carthage(>= 0.3.3)](https://github.com/Carthage/Carthage)  
+
 ## Installation
     cordova plugin add https://github.com/nrikiji/cordova-line-login-plugin.git --variable LINE_CHANNEL_ID={your_line_channel_id}
 
