@@ -3,7 +3,7 @@ A cordova plugin for easy implementation of LINE login using LineSDK.　　
 
 The function login, logs out, acquires, verifies, and refreshes the access token. The version of LineSDK you are using is as follows.  
 
-iOS：4.1.1
+iOS：~> 5.0  
 
 Android：4.0.8  
 
@@ -12,6 +12,7 @@ Create a business account corresponding to LINE login from "LINE BUSINESS CENTER
 
 ### ios
 1. "IOS Bundle ID" "iOS Scheme" is set from "LINE DEVELOPERS".
+1. When using swift5, specify version in config.xml. (Default is swift4)
 1. Install this plugin
 1. Set "Keychain Sharing" to ON from "Capabilities" of xcode
 1. Implementing the program
@@ -20,6 +21,14 @@ Create a business account corresponding to LINE login from "LINE BUSINESS CENTER
 example)
 iOS Bundle ID : com.example.sample
 iOS Scheme : line3rdp.com.example.sample
+```
+
+```
+例)When using swift5
+config.xml  
+<platform name="ios">
+  <preference name="UseSwiftLanguageVersion" value="5" />
+</platform>
 ```
 
 ### android
@@ -33,6 +42,11 @@ Android Package Name : com.example.sample
 Android Package Signature : 11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff:gg:hh:ii:jj:kk
 Android Scheme : com.example.sample://
 ```
+
+## Requirement
+https://github.com/nrikiji/cordova-plugin-carthage-support  
+https://github.com/akofman/cordova-plugin-add-swift-support  
+[Carthage(>= 0.3.3)](https://github.com/Carthage/Carthage)  
 
 ## Installation
     cordova plugin add https://github.com/nrikiji/cordova-line-login-plugin.git --variable LINE_CHANNEL_ID={your_line_channel_id}
