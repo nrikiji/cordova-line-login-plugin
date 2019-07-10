@@ -19,11 +19,11 @@ import LineSDK
     }
     
     func _login(_ command: CDVInvokedUrlCommand, options: LoginManagerOptions) {
-        LoginManager.shared.login(permissions: [.profile], in: self.viewController, options: options) {
+        LoginManager.shared.login(permissions: [.profile, .openID, .email], in: self.viewController, options: options) {
             result in
             switch result {
             case .success(let loginResult):
-                var data = ["userID":nil, "displayName":nil, "pictureURL":nil] as [String : Any?]
+                var data = ["userID":nil, "displayName":nil, "pictureURL":nil, "email":nil] as [String : Any?]
                 if let displayName = loginResult.userProfile?.displayName {
                     data.updateValue(displayName, forKey: "displayName")
                 }
@@ -32,6 +32,9 @@ import LineSDK
                 }
                 if let pictureURL = loginResult.userProfile?.pictureURL {
                     data.updateValue(String(describing: pictureURL), forKey: "pictureURL")
+                }
+                if let email = loginResult.accessToken.IDToken?.payload.email {
+                     data.updateValue(email, forKey: "email")
                 }
                 
                 let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs:data as [AnyHashable : Any])
