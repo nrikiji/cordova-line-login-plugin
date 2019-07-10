@@ -3,6 +3,7 @@ package plugin.line;
 import com.linecorp.linesdk.LineAccessToken;
 import com.linecorp.linesdk.LineApiResponse;
 import com.linecorp.linesdk.LineApiResponseCode;
+import com.linecorp.linesdk.LineIdToken;
 import com.linecorp.linesdk.LineProfile;
 import com.linecorp.linesdk.Scope;
 import com.linecorp.linesdk.api.LineApiClient;
@@ -48,7 +49,7 @@ public class LineLogin extends CordovaPlugin {
                         this.cordova.getActivity().getApplicationContext(),
                         channelId,
                         new LineAuthenticationParams.Builder()
-                                .scopes(Arrays.asList(Scope.PROFILE))
+                                .scopes(Arrays.asList(Scope.PROFILE, Scope.OPENID_CONNECT, Scope.OC_EMAIL))
                                 .build());
                 this.cordova.startActivityForResult((CordovaPlugin) this, loginIntent, REQUEST_CODE);
             } catch (Exception e) {
@@ -110,6 +111,10 @@ public class LineLogin extends CordovaPlugin {
                 json.put("userID", profile.getUserId());
                 json.put("displayName", profile.getDisplayName());
                 json.put("pictureURL", profile.getPictureUrl().toString());
+
+                LineIdToken lineIdToken = result.getLineIdToken();
+                json.put("email", lineIdToken.getEmail());
+
                 callbackContext.success(json);
             } catch (JSONException e) {
                 callbackContext.error(-1);
