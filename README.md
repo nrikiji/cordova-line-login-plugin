@@ -3,7 +3,7 @@ LineSDKを使用してLINEログインを簡単に実装するためのcordova�
 
 機能はログイン、ログアウト、アクセストークンの取得・検証・リフレッシュを行う。使用しているLineSDKのバージョンは以下のとおり。  
 
-iOS：4.1.1
+iOS：~> 5.0  
 
 Android：5.0.1  
 
@@ -12,6 +12,7 @@ Android：5.0.1
 
 ### ios
 1. 「LINE DEVELOPERS」より「iOS Bundle ID」「iOS Scheme」を設定。
+1. swift5を使用する場合、config.xmlにバージョン指定（デフォルトはswift4）
 1. 当プラグインをインストール。
 1. xcodeの「Capabilities」より「Keychain Sharing」をONに設定。
 1. プログラムの実装
@@ -20,6 +21,14 @@ Android：5.0.1
 例)
 iOS Bundle ID : com.example.sample
 iOS Scheme : line3rdp.com.example.sample
+```
+
+```
+例)swift5を使用する場合
+config.xml  
+<platform name="ios">
+  <preference name="UseSwiftLanguageVersion" value="5" />
+</platform>
 ```
 
 ### android
@@ -34,14 +43,18 @@ Android Package Signature : 11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff:gg:hh:i
 Android Scheme : com.example.sample://
 ```
 
-#### trouble shooting
-
+## Requirement
+https://github.com/nrikiji/cordova-plugin-carthage-support  
+https://github.com/akofman/cordova-plugin-add-swift-support  
+[Carthage(>= 0.3.3)](https://github.com/Carthage/Carthage)  
 
 ## Installation
-    cordova plugin add https://github.com/nrikiji/cordova-line-login-plugin.git --variable LINE_CHANNEL_ID={your_line_channel_id}
+```
+cordova plugin add https://github.com/nrikiji/cordova-line-login-plugin.git
+```
 
 ## Supported Platforms
-- iOS
+- iOS (>=10.0)
 - Android
 
 ## LINE SDK
