@@ -1,5 +1,16 @@
 {
-  "name": "cordova-line-login-plugin",
-  "version": "1.0.0",
-  "description": ""
+    "name": "cordova-line-login-plugin",
+    "version": "1.0.0",
+    "description": "",
+    "cordova": {
+        "id": "cordova-plugin-file",
+        "platforms": [
+            "android",
+            "ios"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nrikiji/cordova-line-login-plugin"
+    }
 }
