@@ -4,8 +4,11 @@ A cordova plugin for easy implementation of LINE login using LineSDK.　　
 The function login, logs out, acquires, verifies, and refreshes the access token. The version of LineSDK you are using is as follows.  
 
 iOS：~> 5.0  
+Android：5.0.1  
 
-Android：4.0.8  
+cordova >= 7.1.0  
+cordova-ios >= 4.5.0  
+cordova-android >= 8.0.0  
 
 The flow until incorporation is as follows  
 Create a business account corresponding to LINE login from "LINE BUSINESS CENTER". Select NATIVE_APP for Application Type.
@@ -49,7 +52,7 @@ https://github.com/akofman/cordova-plugin-add-swift-support
 [Carthage(>= 0.3.3)](https://github.com/Carthage/Carthage)  
 
 ## Installation
-    cordova plugin add https://github.com/nrikiji/cordova-line-login-plugin.git --variable LINE_CHANNEL_ID={your_line_channel_id}
+cordova plugin add cordova-line-login-plugin
 
 ## Supported Platforms
 - iOS

@@ -4,8 +4,11 @@ LineSDKを使用してLINEログインを簡単に実装するためのcordova�
 機能はログイン、ログアウト、アクセストークンの取得・検証・リフレッシュを行う。使用しているLineSDKのバージョンは以下のとおり。  
 
 iOS：~> 5.0  
-
 Android：5.0.1  
+
+cordova >= 7.1.0  
+cordova-ios >= 4.5.0  
+cordova-android >= 8.0.0  
 
 組み込みまでの流れは以下の通り  
 「LINE BUSINESS CENTER」からLINEログインに対応したビジネスアカウントを作成。Application TypeはNATIVE_APPを選択。
@@ -50,7 +53,7 @@ https://github.com/akofman/cordova-plugin-add-swift-support
 
 ## Installation
 ```
-cordova plugin add https://github.com/nrikiji/cordova-line-login-plugin.git
+cordova plugin add cordova-line-login-plugin
 ```
 
 ## Supported Platforms
