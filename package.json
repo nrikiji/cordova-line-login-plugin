@@ -1,9 +1,9 @@
 {
     "name": "cordova-line-login-plugin",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "",
     "cordova": {
-        "id": "cordova-plugin-file",
+        "id": "cordova-line-login-plugin",
         "platforms": [
             "android",
             "ios"
