@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-line-login-plugin" version="0.7.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-line-login-plugin" version="1.0.3">
   <name>Line Login</name>
   <js-module src="www/lineLogin.js">
     <clobbers target="lineLogin" />
   </js-module>
+
+  <engines>
+    <engine name="cordova" version=">=7.1.0"/>
+    <engine name="cordova-android" version=">=8.0.0"/>
+    <engine name="cordova-ios" version=">=4.5.0"/>
+  </engines>
 
   <!-- iOS -->
   <platform name="ios">
@@ -30,8 +36,8 @@
       </array>
     </config-file>
 
-    <dependency id="cordova-plugin-add-swift-support" version="1.7.2"/>
-    <dependency id="cordova-plugin-carthage-support" url="https://github.com/nrikiji/cordova-plugin-carthage-support"/>
+    <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
+    <dependency id="cordova-plugin-carthage-support" />
     <source-file src="src/ios/AppDelegate+LineLogin.h" />
     <source-file src="src/ios/AppDelegate+LineLogin.m" />
     <source-file src="src/ios/LineLogin.swift" />
