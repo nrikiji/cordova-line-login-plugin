@@ -75,7 +75,7 @@ angular.module('starter', ['ionic'])
   .controller("LineCtrl", function($scope) {
     $scope.onLineLogin = function() {
       // login...
-      lineLogin.login({},
+      lineLogin.login(
         function(result) {
           console.log(result); // {userID:12345, displayName:'user name', pictureURL:'thumbnail url'}
         }, function(error) {
@@ -95,7 +95,7 @@ angular.module('starter', ['ionic'])
 
     $scope.onLineLoginWeb = function() {
       // login with web...(iOS only)
-      lineLogin.loginWeb({},
+      lineLogin.loginWeb(
         function(result) {
           console.log(result); // {userID:12345, displayName:'user name', pictureURL:'thumbnail url'}
         }, function(error) {
