@@ -1,6 +1,6 @@
 {
     "name": "cordova-line-login-plugin",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "description": "",
     "cordova": {
         "id": "cordova-line-login-plugin",

@@ -26,6 +26,9 @@ import java.util.Arrays;
 public class LineLogin extends CordovaPlugin {
 
     private static final int REQUEST_CODE = 1;
+    private static final int PARAMETER_ERROR = -1;
+    private static final int SDK_ERROR = -2;
+    private static final int UNKNOWN_ERROR = -3;
 
     String channelId;
     CallbackContext callbackContext;
@@ -34,63 +37,25 @@ public class LineLogin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
+        this.callbackContext = callbackContext;
+
         if (action.equals("initialize")) {
-            JSONObject params = data.getJSONObject(0);
-            channelId = params.get("channel_id").toString();
-
-            LineApiClientBuilder apiClientBuilder = new LineApiClientBuilder(this.cordova.getActivity().getApplicationContext(), channelId);
-            lineApiClient = apiClientBuilder.build();
-
+            this.initialize(data, callbackContext);
             return true;
         } else if (action.equals("login")) {
-            this.callbackContext = callbackContext;
-            try {
-                Intent loginIntent = LineLoginApi.getLoginIntent(
-                        this.cordova.getActivity().getApplicationContext(),
-                        channelId,
-                        new LineAuthenticationParams.Builder()
-                                .scopes(Arrays.asList(Scope.PROFILE, Scope.OPENID_CONNECT, Scope.OC_EMAIL))
-                                .build());
-                this.cordova.startActivityForResult((CordovaPlugin) this, loginIntent, REQUEST_CODE);
-            } catch (Exception e) {
-                callbackContext.error(-1);
-            }
+            this.login(callbackContext);
             return true;
         } else if (action.equals("logout")) {
-            try {
-                lineApiClient.logout();
-                callbackContext.success();
-            } catch (Exception e) {
-                callbackContext.error(-1);
-            }
+            this.logout(callbackContext);
             return true;
         } else if (action.equals("getAccessToken")) {
-            JSONObject json = new JSONObject();
-            LineAccessToken lineAccessToken = lineApiClient.getCurrentAccessToken().getResponseData();
-            try {
-                json.put("accessToken", lineAccessToken.getTokenString());
-                json.put("expireTime", lineAccessToken.getEstimatedExpirationTimeMillis());
-                callbackContext.success(json);
-            } catch (JSONException e) {
-                callbackContext.error(-1);
-            }
+            this.getAccessToken(callbackContext);
             return true;
         } else if (action.equals("verifyAccessToken")) {
-            LineApiResponse verifyResponse = lineApiClient.verifyToken();
-            if (verifyResponse.isSuccess()) {
-                callbackContext.success();
-            } else {
-                callbackContext.error(-1);
-            }
+            this.verifyAccessToken(callbackContext);
             return true;
         } else if (action.equals("refreshAccessToken")) {
-            try {
-                lineApiClient.refreshAccessToken();
-                LineAccessToken lineAccessToken = lineApiClient.getCurrentAccessToken().getResponseData();
-                callbackContext.success(lineAccessToken.getTokenString());
-            } catch (Exception e) {
-                callbackContext.error(-1);
-            }
+            this.refreshAccessToken(callbackContext);
             return true;
         } else {
             return false;
@@ -117,11 +82,111 @@ public class LineLogin extends CordovaPlugin {
 
                 callbackContext.success(json);
             } catch (JSONException e) {
-                callbackContext.error(-1);
+                this.UnknownError(e.toString());
             }
         } else if (result.getResponseCode() == LineApiResponseCode.CANCEL) {
-            callbackContext.error(-1);
+            this.SDKError(result.getResponseCode().toString(), "user cancel");
         } else {
+            this.SDKError(result.getResponseCode().toString(), result.toString());
+        }
+    }
+
+    private void initialize(JSONArray data, CallbackContext callbackContext) throws JSONException {
+        JSONObject params = data.getJSONObject(0);
+        channelId = params.get("channel_id").toString();
+        if (channelId.length() == 0) {
+            this.parameterError("channel_id is required.");
+        } else {
+            LineApiClientBuilder apiClientBuilder = new LineApiClientBuilder(this.cordova.getActivity().getApplicationContext(), channelId);
+            lineApiClient = apiClientBuilder.build();
+        }
+    }
+
+    private void login(CallbackContext callbackContext) {
+        try {
+            Intent loginIntent = LineLoginApi.getLoginIntent(
+                    this.cordova.getActivity().getApplicationContext(),
+                    channelId,
+                    new LineAuthenticationParams.Builder()
+                            .scopes(Arrays.asList(Scope.PROFILE, Scope.OPENID_CONNECT, Scope.OC_EMAIL))
+                            .build()
+            );
+            this.cordova.startActivityForResult((CordovaPlugin) this, loginIntent, REQUEST_CODE);
+        } catch (Exception e) {
+            this.UnknownError(e.toString());
+        }
+    }
+
+    private void logout(CallbackContext callbackContext) {
+        try {
+            lineApiClient.logout();
+            callbackContext.success();
+        } catch (Exception e) {
+            this.UnknownError(e.toString());
+        }
+    }
+
+    private void getAccessToken(CallbackContext callbackContext) {
+        try {
+            JSONObject json = new JSONObject();
+            LineAccessToken lineAccessToken = lineApiClient.getCurrentAccessToken().getResponseData();
+            json.put("accessToken", lineAccessToken.getTokenString());
+            json.put("expireTime", lineAccessToken.getEstimatedExpirationTimeMillis());
+            callbackContext.success(json);
+        } catch (Exception e) {
+            this.UnknownError(e.toString());
+        }
+    }
+
+    private void verifyAccessToken(CallbackContext callbackContext) {
+        LineApiResponse verifyResponse = lineApiClient.verifyToken();
+        if (verifyResponse.isSuccess()) {
+            callbackContext.success();
+        } else {
+            this.SDKError(verifyResponse.getResponseCode().toString(), verifyResponse.getErrorData().toString());
+        }
+    }
+
+    private void refreshAccessToken(CallbackContext callbackContext) {
+        try {
+            lineApiClient.refreshAccessToken();
+            LineAccessToken lineAccessToken = lineApiClient.getCurrentAccessToken().getResponseData();
+            callbackContext.success(lineAccessToken.getTokenString());
+        } catch (Exception e) {
+            this.UnknownError(e.toString());
+        }
+    }
+
+    private void parameterError(String description) {
+        try {
+            JSONObject json = new JSONObject();
+            json.put("code", PARAMETER_ERROR);
+            json.put("description", description);
+            callbackContext.error(json);
+        } catch (JSONException e) {
+            this.UnknownError(e.toString());
+        }
+    }
+
+    private void SDKError(String sdkErrorCode, String description) {
+        try {
+            JSONObject json = new JSONObject();
+            json.put("code", SDK_ERROR);
+            json.put("sdkErrorCode", sdkErrorCode);
+            json.put("description", description);
+            callbackContext.error(json);
+        } catch (JSONException e) {
+            this.UnknownError(e.toString());
+        }
+    }
+
+    private void UnknownError(String description) {
+        try {
+            JSONObject json = new JSONObject();
+            json.put("code", UNKNOWN_ERROR);
+            json.put("description", description);
+            callbackContext.error(json);
+        } catch (JSONException e) {
             callbackContext.error(-1);
         }
     }

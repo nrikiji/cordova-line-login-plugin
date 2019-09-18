@@ -3,13 +3,17 @@ import LineSDK
 
 @objc(LineLogin) class Line : CDVPlugin {
     
+    struct ErrorCode {
+        static let ParameterError = -1
+        static let SDKError = -2
+    }
+
     @objc func initialize(_ command: CDVInvokedUrlCommand) {
         
         let params = command.arguments[0] as AnyObject
         
         guard let channelID = params["channel_id"] as? String else {
-            let result = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: "Parameter Error")
-            self.commandDelegate.send(result, callbackId:command.callbackId)
+            self.parameterError(command: command, description: "channel_id is required")
             return
         }
         
@@ -24,25 +28,18 @@ import LineSDK
             switch result {
             case .success(let loginResult):
                 var data = ["userID":nil, "displayName":nil, "pictureURL":nil, "email":nil] as [String : Any?]
-                if let displayName = loginResult.userProfile?.displayName {
-                    data.updateValue(displayName, forKey: "displayName")
-                }
-                if let userID = loginResult.userProfile?.userID {
-                    data.updateValue(userID, forKey: "userID")
-                }
+                
+                data.updateValue(loginResult.userProfile?.displayName, forKey: "displayName")
+                data.updateValue(loginResult.userProfile?.userID, forKey: "userID")
+                data.updateValue(loginResult.accessToken.IDToken?.payload.email, forKey: "email")
                 if let pictureURL = loginResult.userProfile?.pictureURL {
                     data.updateValue(String(describing: pictureURL), forKey: "pictureURL")
-                }
-                if let email = loginResult.accessToken.IDToken?.payload.email {
-                     data.updateValue(email, forKey: "email")
                 }
                 
                 let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs:data as [AnyHashable : Any])
                 self.commandDelegate.send(result, callbackId:command.callbackId)
             case .failure(let error):
-                let error = ["code":error.errorCode, "message": error.errorDescription as Any]
-                let result = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: error)
-                self.commandDelegate.send(result, callbackId:command.callbackId)
+                self.sdkError(command: command, error: error)
             }
         }
     }
@@ -62,9 +59,7 @@ import LineSDK
                 let result = CDVPluginResult(status: CDVCommandStatus_OK)
                 self.commandDelegate.send(result, callbackId:command.callbackId)
             case .failure(let error):
-                let error = ["code":error.errorCode, "message": error.errorDescription as Any]
-                let result = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: error)
-                self.commandDelegate.send(result, callbackId:command.callbackId)
+                self.sdkError(command: command, error: error)
             }
         }
     }
@@ -89,9 +84,8 @@ import LineSDK
             case .success( _):
                 let result = CDVPluginResult(status: CDVCommandStatus_OK)
                 self.commandDelegate.send(result, callbackId:command.callbackId)
-            case .failure( _):
-                let result = CDVPluginResult(status: CDVCommandStatus_ERROR)
-                self.commandDelegate.send(result, callbackId:command.callbackId)
+            case .failure(let error):
+                self.sdkError(command: command, error: error)
             }
         }
     }
@@ -104,11 +98,23 @@ import LineSDK
                 let data = ["accessToken":accessToken.value, "expireTime":accessToken.expiresAt.timeIntervalSince1970] as [String : Any?]
                 let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs:data as [AnyHashable : Any])
                 self.commandDelegate.send(result, callbackId:command.callbackId)
-            case .failure( _):
-                let result = CDVPluginResult(status: CDVCommandStatus_ERROR)
-                self.commandDelegate.send(result, callbackId:command.callbackId)
+            case .failure(let error):
+                self.sdkError(command: command, error: error)
             }
         }
+    }
+    
+    private func parameterError(command: CDVInvokedUrlCommand, description: String) {
+        let err = ["code":ErrorCode.ParameterError, "description": description] as [AnyHashable : Any]
+        let result = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: err)
+        self.commandDelegate.send(result, callbackId:command.callbackId)
+    }
+    
+    private func sdkError(command: CDVInvokedUrlCommand, error: LineSDKError) {
+        let description = error.errorDescription ?? ""
+        let err = ["code":ErrorCode.SDKError, "sdkErrorCode":error.errorCode, "description": description] as [AnyHashable : Any]
+        let result = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: err)
+        self.commandDelegate.send(result, callbackId:command.callbackId)
     }
     
 }
