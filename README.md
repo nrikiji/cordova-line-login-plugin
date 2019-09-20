@@ -17,14 +17,7 @@ cordova-android >= 8.0.0
 1. 「LINE DEVELOPERS」より「iOS Bundle ID」「iOS Scheme」を設定。
 1. swift5を使用する場合、config.xmlにバージョン指定（デフォルトはswift4）
 1. 当プラグインをインストール。
-1. xcodeの「Capabilities」より「Keychain Sharing」をONに設定。
 1. プログラムの実装
-
-```
-例)
-iOS Bundle ID : com.example.sample
-iOS Scheme : line3rdp.com.example.sample
-```
 
 ```
 例)swift5を使用する場合
