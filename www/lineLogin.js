@@ -8,13 +8,12 @@ var LineLogin = {
     return exec(onSuccess, onFail, 'LineLogin', 'initialize', [param]);
   },
 
-  // @TODO delete param because unnecessary
-  login: function(param, onSuccess, onFail) {
-    return exec(onSuccess, onFail, 'LineLogin', 'login', [param]);
+  login: function(onSuccess, onFail) {
+    return exec(onSuccess, onFail, 'LineLogin', 'login', []);
   },
 
-  loginWeb: function(param, onSuccess, onFail) {
-    return exec(onSuccess, onFail, 'LineLogin', 'loginWeb', [param]);
+  loginWeb: function(onSuccess, onFail) {
+    return exec(onSuccess, onFail, 'LineLogin', 'loginWeb', []);
   },
 
   logout: function(onSuccess, onFail) {
