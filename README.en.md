@@ -17,17 +17,10 @@ Create a business account corresponding to LINE login from "LINE BUSINESS CENTER
 1. "IOS Bundle ID" "iOS Scheme" is set from "LINE DEVELOPERS".
 1. When using swift5, specify version in config.xml. (Default is swift4)
 1. Install this plugin
-1. Set "Keychain Sharing" to ON from "Capabilities" of xcode
 1. Implementing the program
 
 ```
-example)
-iOS Bundle ID : com.example.sample
-iOS Scheme : line3rdp.com.example.sample
-```
-
-```
-例)When using swift5
+example)When using swift5
 config.xml  
 <platform name="ios">
   <preference name="UseSwiftLanguageVersion" value="5" />
@@ -75,7 +68,7 @@ angular.module('starter', ['ionic'])
   .controller("LineCtrl", function($scope) {
     $scope.onLineLogin = function() {
       // login...
-      lineLogin.login({},
+      lineLogin.login(
         function(result) {
           console.log(result); // {userID:12345, displayName:'user name', pictureURL:'thumbnail url'}
         }, function(error) {
@@ -95,7 +88,7 @@ angular.module('starter', ['ionic'])
 
     $scope.onLineLoginWeb = function() {
       // login with web...(iOS only)
-      lineLogin.loginWeb({},
+      lineLogin.loginWeb(
         function(result) {
           console.log(result); // {userID:12345, displayName:'user name', pictureURL:'thumbnail url'}
         }, function(error) {
