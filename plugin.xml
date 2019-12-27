@@ -59,8 +59,6 @@
     </config-file>
     <source-file src="src/android/LineLogin.java" target-dir="src/plugin/line" />
 
-    <lib-file src="src/android/line-sdk-5.3.1.aar" />
-    
     <config-file target="AndroidManifest.xml" parent="/*">
       <uses-permission android:name="android.permission.INTERNET" />
     </config-file>
