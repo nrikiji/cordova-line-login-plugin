@@ -1,0 +1,36 @@
+name: npm release
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: build
+    runs-on: macOS-10.15
+    strategy:
+      matrix:
+        node-version: [12.x]
+        # node-version: [10.x, 12.x]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: cordova-ling-login-plugin
+      - run: |-
+          sudo xcode-select -s /Applications/Xcode_11.app
+          sudo xcodebuild -license accept
+      - run: |
+          npm install -g cordova@latest
+          npm install -g ionic@latest
+      - run: |
+          ionic start project blank --type=ionic-angular
+          cd project
+          ionic cordova platform add android@8
+          ionic cordova platform add ios@5
+          ionic cordova plugin add ../cordova-ling-login-plugin
+      - run: |
+          cd project
+          ionic cordova build android
+      - run: |
+          cd project
+          ionic cordova build ios
