@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - build
 
 jobs:
   build:
@@ -20,8 +21,8 @@ jobs:
           sudo xcode-select -s /Applications/Xcode_11.app
           sudo xcodebuild -license accept
       - run: |
-          npm install -g cordova@latest
-          npm install -g ionic@latest
+          npm install -g cordova@9
+          npm install -g ionic@5
       - run: |
           ionic start project blank --type=ionic-angular
           cd project
