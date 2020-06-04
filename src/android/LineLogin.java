@@ -75,7 +75,9 @@ public class LineLogin extends CordovaPlugin {
                 LineProfile profile = result.getLineProfile();
                 json.put("userID", profile.getUserId());
                 json.put("displayName", profile.getDisplayName());
-                json.put("pictureURL", profile.getPictureUrl().toString());
+                if (profile.getPictureUrl() != null) {
+                    json.put("pictureURL", profile.getPictureUrl().toString());
+                }
 
                 LineIdToken lineIdToken = result.getLineIdToken();
                 json.put("email", lineIdToken.getEmail());
