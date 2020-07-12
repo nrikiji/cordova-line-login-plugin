@@ -3,7 +3,7 @@ A cordova plugin for easy implementation of LINE login using LineSDK.　　
 
 The function login, logs out, acquires, verifies, and refreshes the access token. The version of LineSDK you are using is as follows.  
 
-iOS：~> 5.5.1  
+iOS：5.5.1  
 Android：5.3.1  
 
 cordova >= 7.1.0  
