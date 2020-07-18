@@ -8,7 +8,7 @@
 
 #import "AppDelegate+LineLogin.h"
 #import <objc/runtime.h>
-@import LineSDKObjC;
+@import LineSDK;
 
 @implementation AppDelegate (LineLogin)
 

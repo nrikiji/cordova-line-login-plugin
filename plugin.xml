@@ -37,16 +37,10 @@
     </config-file>
 
     <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
-    <dependency id="cordova-plugin-carthage-support" />
     <source-file src="src/ios/AppDelegate+LineLogin.h" />
     <source-file src="src/ios/AppDelegate+LineLogin.m" />
     <source-file src="src/ios/LineLogin.swift" />
-    <header-file src="src/ios/LineSDK-Bridging-Header.h" />
-    <carthage>
-      <cartfile>github "line/line-sdk-ios-swift" == 5.5.1</cartfile>
-      <framework src="LineSDK.framework"/>
-      <framework src="LineSDKObjC.framework"/>
-    </carthage>
+    <framework src="LineSDKSwift/ObjC" type="podspec" spec="= 5.5.1" />
 
   </platform>
 
