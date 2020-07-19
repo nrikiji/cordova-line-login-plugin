@@ -141,3 +141,49 @@ error callback returns an error of the form 　
   description: Error message
 }
 ```
+
+## use in capacitors
+
+### install
+```
+$ npm install https://github.com/nrikiji/cordova-line-login-plugin.git#dev-capacitor
+```
+
+### iOS configuration
+
+Overwrite AppDelegate and info.plist in capcitor or add value Please take the following actions as I have not found a way to do so.  
+Please note that you will have to deal with this every time you recreate the ios directory.  
+
+In file ios/App/App/AppDelegate.swift add or replace the following:
+```
++ import LineSDK
+  [...]
+   func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+-   return CAPBridge.handleOpenUrl(url, options)
++     if CAPBridge.handleOpenUrl(url, options) {
++        return LoginManager.shared.application(app, open: url)
++     } else {
++         return false
++     }
+   }
+```
+
+Add the following in the ios/App/App/info.plist file:  
+```
++ <key>CFBundleURLTypes</key>
++ <array>
++     <dict>
++         <key>CFBundleTypeRole</key>
++         <string>Editor</string>
++         <key>CFBundleURLSchemes</key>
++         <array>
++             <string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
++         </array>
++     </dict>
++ </array>
++ <key>LSApplicationQueriesSchemes</key>
++ <array>
++     <string>lineauth2</string>
++ </array>
+```
+
