@@ -40,9 +40,7 @@ Android Scheme : com.example.sample://
 ```
 
 ## Requirement
-https://github.com/nrikiji/cordova-plugin-carthage-support  
 https://github.com/akofman/cordova-plugin-add-swift-support  
-[Carthage(>= 0.3.3)](https://github.com/Carthage/Carthage)  
 
 ## Installation
 ```
@@ -149,7 +147,7 @@ errorコールバックでは以下の形式のエラーを返します
 
 ### install
 ```
-$ npm install https://github.com/nrikiji/cordova-line-login-plugin.git#dev-capacitor
+$ npm install cordova-line-login-plugin
 ```
 
 ### iOS configuration

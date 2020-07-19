@@ -1,3 +1,8 @@
+
+## 1.2.10
+
+* fixed README
+
 ## 1.2.9
 
 * fixed Changed the management of sdk from carthage to cocoapods
