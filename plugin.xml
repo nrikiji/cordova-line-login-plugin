@@ -40,7 +40,15 @@
     <source-file src="src/ios/AppDelegate+LineLogin.h" />
     <source-file src="src/ios/AppDelegate+LineLogin.m" />
     <source-file src="src/ios/LineLogin.swift" />
-    <framework src="LineSDKSwift/ObjC" type="podspec" spec="= 5.5.1" />
+
+    <podspec>
+      <config>
+        <source url="https://cdn.cocoapods.org/"/>
+      </config>
+      <pods use-frameworks="true">
+        <pod name="LineSDKSwift/ObjC" spec="5.5.1"/>
+      </pods>
+    </podspec>
 
   </platform>
 
