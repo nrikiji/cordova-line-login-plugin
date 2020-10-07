@@ -1,4 +1,8 @@
 
+## 1.2.11
+
+* fixed error ionic cordova build
+
 ## 1.2.10
 
 * fixed README
