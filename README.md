@@ -56,79 +56,76 @@ This plugin use the SDKs provided by LINE. More information about these in their
 
 ### Example
 
-Usage examples with ionic
 ```js
-angular.module('starter', ['ionic'])
-  .run(function($ionicPlatform) {
-    ・・・
+document.addEventListener('deviceready', onDeviceReady, false);
 
-    // initialize
-    lineLogin.initialize({channel_id: "your_chanel_id"});
-  })
-  .controller("LineCtrl", function($scope) {
-    $scope.onLineLogin = function() {
-      // login...
-      lineLogin.login(
-        function(result) {
-          console.log(result); // {userID:12345, displayName:'user name', pictureURL:'thumbnail url'}
-        }, function(error) {
-          console.log(error);
-        });
-    }
+function onDeviceReady() {
+  lineLogin.initialize({channel_id: "1565553788"});
+}
 
-    $scope.onLineLogout = function() {
-      // logout...
-      lineLogin.logout(
-        function(result) {
-          console.log(result);
-        }, function(error) {
-          console.log(error);
-        });
-    }
+function onLineLogin() {
+  // login...
+  lineLogin.login(
+   function(result) {
+     console.log(result); // {userID:12345, displayName:'user name', pictureURL:'thumbnail url'}
+   }, function(error) {
+     console.log(error);
+   });
+}
 
-    $scope.onLineLoginWeb = function() {
-      // login with web...(iOS only)
-      lineLogin.loginWeb(
-        function(result) {
-          console.log(result); // {userID:12345, displayName:'user name', pictureURL:'thumbnail url'}
-        }, function(error) {
-          console.log(error);
-        });
-    }
+function onLineLoginWeb {
+  // login with web...(iOS only)
+  lineLogin.loginWeb(
+    function(result) {
+      console.log(result); // {userID:12345, displayName:'user name', pictureURL:'thumbnail url'}
+    }, function(error) {
+      console.log(error);
+    });
+}
 
-    $scope.onLineGetAccessToken = function() {
-      // get access token
-      lineLogin.getAccessToken(
-        function(result) {
-          // success
-          console.log(result); // {accessToken:'xxxxxxxx', expireTime: 123456789}
-        }, function(error) {
-          // failed
-        });
-    }
+function onLineLogout {
+  // logout...
+  lineLogin.logout(
+    function(result) {
+      console.log(result);
+    }, function(error) {
+      console.log(error);
+    });
+}
 
-    $scope.onLineVerifyAccessToken = function() {
-      // verify current access token
-      lineLogin.verifyAccessToken(
-        function() {
-          // success
-        }, function(error) {
-          // failed
-        });
-    }
+function onLineGetAccessToken() {
+  // get access token
+  lineLogin.getAccessToken(
+    function(result) {
+      // success
+      console.log(result); // {accessToken:'xxxxxxxx', expireTime: 123456789}
+    }, function(error) {
+      // failed
+    });
+}
 
-    $scope.onLineRefreshAccessToken = function() {
-      // refresh access token
-      lineLogin.verifyAccessToken(
-        function(accessToken) {
-          // success
-        }, function(error) {
-          // failed
-        });
-    }
+function onLineVerifyAccessToken() {
+  // verify current access token
+  lineLogin.verifyAccessToken(
+    function() {
+      // success
+    }, function(error) {
+      // failed
+    });
+}
 
-  });
+function onLineRefreshAccessToken() {
+  // refresh access token
+  lineLogin.verifyAccessToken(
+    function(accessToken) {
+      // success
+    }, function(error) {
+      // failed
+    });
+}
 ```
+
+If you want to use it with ionic, please refer to the [ionic-native documentation](https://ionicframework.com/docs/native/line-login).
 
 ### Error Code
 error callback returns an error of the form 　
