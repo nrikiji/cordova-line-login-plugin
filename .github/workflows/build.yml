@@ -1,4 +1,4 @@
-name: npm release
+name: npm build
 on:
   push:
     branches:
@@ -6,13 +6,12 @@ on:
       - build
 
 jobs:
-  build:
-    name: build
+  node12:
+    name: node12 / cordova9 / ionic5
     runs-on: macOS-10.15
     strategy:
       matrix:
         node-version: [12.x]
-        # node-version: [10.x, 12.x]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -24,14 +23,37 @@ jobs:
           npm install -g cordova@9
           npm install -g ionic@5
       - run: |
-          ionic start project blank --type=ionic-angular
-          cd project
+          ionic start project blank --type=ionic-angular && cd project
           ionic cordova platform add android@8
           ionic cordova platform add ios@5
           ionic cordova plugin add ../cordova-ling-login-plugin
       - run: |
-          cd project
-          ionic cordova build android
+          cd project && ionic cordova build android
       - run: |
-          cd project
-          ionic cordova build ios
+          cd project && ionic cordova build ios
+  node14:
+    name: node14 / cordova10 / ionic6
+    runs-on: macOS-10.15
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: cordova-ling-login-plugin
+      - run: |-
+          sudo xcode-select -s /Applications/Xcode_11.app
+          sudo xcodebuild -license accept
+      - run: |
+          npm install -g cordova@10
+          npm install -g @ionic/cli@6
+      - run: |
+          ionic start project blank --type=ionic-angular && cd project
+          ionic integrations enable cordova
+          ionic cordova platform add android@9
+          ionic cordova platform add ios@6
+          ionic cordova plugin add ../cordova-ling-login-plugin
+      - run: |
+          cd project && ionic cordova build android
+      - run: |
+          cd project && ionic cordova build ios
