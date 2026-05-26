@@ -37,16 +37,16 @@ static void swizzleMethod(Class class, SEL destinationSelector, SEL sourceSelect
     }
     
     if ([url.scheme hasPrefix:@"line3rdp"]) {
-        [[LineLoginManager sharedManager] application:[UIApplication sharedApplication]
-                                                 open:url
-                                              options:@{}];
+        [[LineSDKLoginManager sharedManager] application:[UIApplication sharedApplication]
+                                                    open:url
+                                                 options:@{}];
     }
 }
 
 - (BOOL)line_application_options:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary *)options {
     NSRange range = [url.absoluteString rangeOfString:@"line3rdp"];
     if (range.location != NSNotFound) {
-        BOOL handledByLine = [[LineLoginManager sharedManager] application:app open:url options:options];
+        BOOL handledByLine = [[LineSDKLoginManager sharedManager] application:app open:url options:options];
         [[NSNotificationCenter defaultCenter] postNotificationName:CDVPluginHandleOpenURLNotification object:url];
         return YES;
     } else {
