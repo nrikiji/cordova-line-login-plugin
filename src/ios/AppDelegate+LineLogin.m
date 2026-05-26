@@ -10,29 +10,47 @@
 #import <objc/runtime.h>
 @import LineSDK;
 
-@implementation AppDelegate (LineLogin)
+#define CDVPluginHandleOpenURLNotification @"CDVPluginHandleOpenURLNotification"
 
--(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    return [[LineSDKLoginManager sharedManager] application:app open:url options:options];
-}
+@implementation AppDelegate (LineLogin)
 
 static void swizzleMethod(Class class, SEL destinationSelector, SEL sourceSelector);
 
-+(void)load {
++ (void)load {
     swizzleMethod([AppDelegate class], @selector(application:openURL:options:), @selector(line_application_options:openURL:options:));
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleCordovaOpenURLNotification:)
+                                                 name:CDVPluginHandleOpenURLNotification
+                                               object:nil];
 }
 
-- (BOOL)line_application_options: (UIApplication *)app openURL: (NSURL *)url options: (NSDictionary *)options {
++ (void)handleCordovaOpenURLNotification:(NSNotification *)notification {
+    NSURL *url = [notification object];
+    if (!url || ![url isKindOfClass:[NSURL class]]) {
+        return;
+    }
+    
+    if ([url.scheme hasPrefix:@"line3rdp"]) {
+        [[LineSDKLoginManager sharedManager] application:[UIApplication sharedApplication]
+                                                 openURL:url
+                                                 options:@{}];
+    }
+}
+
+- (BOOL)line_application_options:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary *)options {
     NSRange range = [url.absoluteString rangeOfString:@"line3rdp"];
     if (range.location != NSNotFound) {
-        return [[LineSDKLoginManager sharedManager] application:app open:url options:options];
+        BOOL handledByLine = [[LineSDKLoginManager sharedManager] application:app openURL:url options:options];
+        [[NSNotificationCenter defaultCenter] postNotificationName:CDVPluginHandleOpenURLNotification object:url];
+        return YES;
     } else {
         return [self line_application_options:app openURL:url options:options];
     }
 }
 
-static void swizzleMethod(Class class, SEL destinationSelector, SEL sourceSelector) {
     Method destinationMethod = class_getInstanceMethod(class, destinationSelector);
+static void swizzleMethod(Class class, SEL destinationSelector, SEL sourceSelector) {
     Method sourceMethod = class_getInstanceMethod(class, sourceSelector);
 
     if (class_addMethod(class, destinationSelector, method_getImplementation(sourceMethod), method_getTypeEncoding(sourceMethod))) {
